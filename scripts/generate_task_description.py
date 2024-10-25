@@ -22,35 +22,35 @@ def main(api_key):
 
     # Extract learning goals
     learning_goals = """
-    * Using Documentation
-    * Reading from a Text File
-    * Using the `HashMap` Class
+    * Using Data from Files to Instantiate Objects
+    * Designing Classes
+    * Programming Creatively
 
         {
-            "main_point": "Using Documentation",
+            "main_point": "Using Data from Files to Instantiate Objects",
             "sub_points": [
-                "Description: This concept emphasizes the importance of using documentation to understand and implement Java classes and libraries effectively. Mastery of documentation is crucial for solving programming problems and enhancing code quality.",
-                "Subpoint 1: Navigating official Java documentation and API references.",
-                "Subpoint 2: Understanding code examples and integrating them into projects.",
-                "Subpoint 3: Leveraging community resources and forums for additional insights."
+                "Description: This concept introduces the process of reading data from files and using it to create and initialize objects in Java. Mastery of this skill is essential for applications that require dynamic data handling and object creation based on external data sources.",
+                "Subpoint 1: Understanding file formats and parsing techniques for data extraction.",
+                "Subpoint 2: Using file I/O classes to read data and convert it into object attributes.",
+                "Subpoint 3: Handling exceptions and ensuring data integrity during object instantiation."
             ]
         },
         {
-            "main_point": "Reading from a Text File",
+            "main_point": "Designing Classes",
             "sub_points": [
-                "Description: This concept introduces file I/O operations in Java, focusing on reading data from text files. Understanding file reading is essential for applications that require data persistence and external data processing.",
-                "Subpoint 1: Setting up file paths and understanding file streams.",
-                "Subpoint 2: Using classes like `FileReader` and `BufferedReader` for efficient file reading.",
-                "Subpoint 3: Handling exceptions and ensuring resource management with try-with-resources."
+                "Description: This concept focuses on the principles and practices of designing well-structured Java classes, which are fundamental to object-oriented programming. Effective class design is crucial for creating maintainable and scalable software systems.",
+                "Subpoint 1: Identifying class responsibilities and defining clear interfaces.",
+                "Subpoint 2: Implementing cohesive class structures with appropriate fields and methods.",
+                "Subpoint 3: Leveraging design patterns to solve common problems and enhance class design."
             ]
         },
         {
-            "main_point": "Using the `HashMap` Class",
+            "main_point": "Programming Creatively",
             "sub_points": [
-                "Description: This concept explores the `HashMap` class, a powerful collection for storing key-value pairs. Mastery of `HashMap` is important for efficient data retrieval and manipulation in Java applications.",
-                "Subpoint 1: Creating and initializing a `HashMap` with generic types.",
-                "Subpoint 2: Performing operations such as adding, removing, and accessing key-value pairs.",
-                "Subpoint 3: Understanding hash functions and handling collisions for optimal performance."
+                "Description: This concept encourages students to apply creative thinking and problem-solving techniques in their programming projects. Creative programming is vital for developing innovative solutions and enhancing the functionality and user experience of software applications.",
+                "Subpoint 1: Exploring different approaches to problem-solving and algorithm design.",
+                "Subpoint 2: Encouraging experimentation and iteration to refine solutions.",
+                "Subpoint 3: Integrating user feedback and testing to improve program effectiveness and usability."
             ]
         }
     
