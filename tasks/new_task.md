@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-eaIPuAIMkB4bfcrHOYaGzrc6.png?st=2024-10-25T23%3A09%3A18Z&se=2024-10-26T01%3A09%3A18Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-10-25T19%3A33%3A34Z&ske=2024-10-26T19%3A33%3A34Z&sks=b&skv=2024-08-04&sig=5tROr%2B3C3nFD1fpXJpDIwwcWxPIN7iQruxNc3dUUnb4%3D)
+
 # 🎮 Simple Adventure Game Application
 
 Welcome to the Simple Adventure Game development task! In this project, you'll create a simple yet engaging interactive game application. The game will include player movement, a scoring system, and interactions with enemies. This multi-part task is designed to help you build strong programming foundations by integrating various essential concepts. Let's dive in!
