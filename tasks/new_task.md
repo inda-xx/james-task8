@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-nQLjbt60FswqspAP73IpkgTn.png?st=2024-10-25T23%3A14%3A58Z&se=2024-10-26T01%3A14%3A58Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-10-25T04%3A21%3A33Z&ske=2024-10-26T04%3A21%3A33Z&sks=b&skv=2024-08-04&sig=TlJYL%2BWhXpoeA/4XkBE0aIOenjJEUYx9GBDrlhjs4qw%3D)
+
 ### 🎮 Task: Develop a Simple Game Application with Player Movement and Enemy Interactions
 
 Welcome to this exciting programming task where you'll harness your creativity to develop a simple game application. This task will guide you through the process of using data from files to instantiate objects, designing classes, and creatively solving problems in game development.
