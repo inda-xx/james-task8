@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-dO4AzSSyD1oUM1Jl5zaPu2IB.png?st=2024-10-31T11%3A33%3A55Z&se=2024-10-31T13%3A33%3A55Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-10-31T01%3A19%3A08Z&ske=2024-11-01T01%3A19%3A08Z&sks=b&skv=2024-08-04&sig=KzXyhMaAbL8Yo6rcXLTcU%2B/wDns8Jai3jGefSRBuGo4%3D)
+
 # 🎮 Game Development Task: Building a Simple Adventure Game
 
 In this task, you will design and implement a simple text-based adventure game. Your game will involve player movement, a basic scoring system, and interactions with enemies. This exercise will help you integrate files for data handling, class design, and creative programming techniques. We'll proceed through a series of exercises that explore these concepts and result in a functional game by the end.
