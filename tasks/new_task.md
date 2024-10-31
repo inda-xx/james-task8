@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-Uoscg5VjK7E0KYAUDLpFPrAM.png?st=2024-10-31T13%3A12%3A31Z&se=2024-10-31T15%3A12%3A31Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-10-31T01%3A04%3A36Z&ske=2024-11-01T01%3A04%3A36Z&sks=b&skv=2024-08-04&sig=CpmKbeXP9LHTG2Jpn4heOwUeyAOMJqoqh6CRqKcYO24%3D)
+
 # 🎮 Simple Game Application: "Alien Escape"
 
 Welcome to the "Alien Escape" project! In this task, you will create a simple game where players must navigate a spaceship through a field of aliens, collect points, and avoid enemy crafts. This project will enhance your understanding of object-oriented design, file I/O, and creative problem-solving.
