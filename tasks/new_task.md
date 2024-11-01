@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-Bq0wTj0LW1vcUt4quSMF0pzF.png?st=2024-11-01T08%3A55%3A12Z&se=2024-11-01T10%3A55%3A12Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-11-01T01%3A17%3A11Z&ske=2024-11-02T01%3A17%3A11Z&sks=b&skv=2024-08-04&sig=nMNIfQQtyQGuapfUv/6oTxlWXo0xczNVwAFppRSDL2o%3D)
+
 # 🎮 Game Development Project: Building a Simple Game Application
 
 Welcome to your new programming adventure! In this task, you are going to build a simple game application designed to hone your skills in Java programming, focusing on the integration of player movement, scoring systems, and enemy interactions. This project will involve using data from files to instantiate objects, crafting well-designed classes, and engaging in creative coding.
