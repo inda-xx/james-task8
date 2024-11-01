@@ -18,7 +18,7 @@ def generate_image_url_from_description(description, client):
     response = client.images.generate(
         model="dall-e-3",
         prompt=prompt,
-        size="1024x720",
+        size="1792x1024",
         quality="standard",
         n=1,
     )
