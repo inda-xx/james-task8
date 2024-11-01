@@ -87,6 +87,7 @@ def main(api_key):
                 "- **Exercises 3 & 4**: Focus on combining and integrating the concepts into coding. Require students to write code that applies the concepts in practical scenarios.\n\n"
                 "- **Exercises 5 & 6**: Are challenging coding tasks that require significant learning and coding effort to complete. These should be step-by-step tasks that build upon previous exercises.\n\n"
                 "Use the following exercises from the original task as inspiration for each exercise in the new task. Adapt them to fit the new theme and ensure they cover the learning goals.\n\n"
+                "Althought the task should be modular it is desired to have a general overarching theme in the more programming oriented tasks, not so much in the more theory oriented ones."
             )
         }
     ]

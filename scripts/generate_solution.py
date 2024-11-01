@@ -66,194 +66,209 @@ def split_task_into_exercises(task_content):
 def build_prompt(task_description):
     # Inspirational code snippet for the solution
     inspirational_code = """
-    
-        // REPOBEE-SANITIZER-SHRED
-import java.util.HashMap;
 
-/**
- * A file to analyze text
- * @author Linus Östlund
- */
-public class FileTextAnalyzer {
-    private FileWordSplitter words;
-    private HashMap<String, Integer> wordOccurrences;
-
-    public FileTextAnalyzer(String filename) {
-        wordOccurrences = new HashMap<>();
-
-        // Create a new FileWordSplitter (FWS)
-        words = new FileWordSplitter(filename);
-
-        // Iterate over all words in the FWS
-        for (String word : words.getWords()) {
-            // If it is the first occurrence, set value to 1
-            word = word.toLowerCase();
-            if(!wordOccurrences.containsKey(word)) {
-                wordOccurrences.put(word, 1);
-            } else {
-                // Otherwise, increment the current value
-                int oldValue = wordOccurrences.get(word);
-                wordOccurrences.put(word, oldValue + 1);
-
-                // Alternate solution:
-                // wordOccurrences.merge(word, 1, Integer::sum);
-            }
-        }
-    }
-
-    /**
-     * Get the number of words in the text file
-     * @return number of words
-     */
-    public int wordCount() {
-        return words.getWords().size();
-    }
-
-    /**
-     * Get the HashMap containing all word occurrences
-     * @return HashMap of all word occurrences
-     */
-    public HashMap<String, Integer> getWordOccurrences() {
-        return wordOccurrences;
-    }
-
-    /**
-     * Return the number of occurrences of word
-     * @param word the word to count occurrences of
-     * @return the number of times the word is present in the file
-     */
-    public int occurrencesOf(String word) {
-        word = word.toLowerCase();
-        if (!wordOccurrences.containsKey(word)) {
-            return 0;
-        } else {
-            return wordOccurrences.get(word);
-        }
-    }
-
-    /**
-     * A method to find the frequency words in the file
-     * @param word the word to get the frequency of
-     * @return The number of times the word is present divided by the number of words in the file
-     */
-    public double frequencyOf(String word) {
-        word = word.toLowerCase();
-        if (wordOccurrences.containsKey(word)) {
-            // If the word is in the corpus, return the frequency of it
-            double occurrencesOfWord = occurrencesOf(word);
-            double totalAmountOfWords = wordCount();
-            return occurrencesOfWord / totalAmountOfWords;
-        } else {
-            return 0;
-        }
-    }
-
-    /**
-     * Find out how many unique word the input file has
-     * @return the size of HashMap's key set
-     */
-    public int uniqueWordCount() {
-        return wordOccurrences.keySet().size();
-    }
-}
-
-
-
-
-// REPOBEE-SANITIZER-SHRED
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-
-/**
- * Sample solution for the File Word Splitter class
- * @author Linus Östlund
- */
-public class FileWordSplitter {
-    private ArrayList<String> words;
-
-    /**
-     * The constructor takes the name of a file and iterate over all words.
-     * Requires tidy data with not delimiters other than '/n' and ' ' (whitespace)
-     * @param filename name of the file. NOTE: has to be in the same folder
-     * @throws IOException if something goes wrong while reading the file
-     */
-    public FileWordSplitter(String filename) {
-
-        // Initialize the ArrayList
-        words = new ArrayList<>();
-
-        try {
-            // Attempt to open a text file
-            BufferedReader file = new BufferedReader(new FileReader(filename));
-
-            // Try to read the first line of the file
-            String line = file.readLine();
-
-            // Keep reading while there are lines left
-            while (line != null) {
-                // NOTE: input has to be tidy and only have whitespace as delimiters
-                for (String word : line.split(" ")) {
-                    words.add(word);
-                }
-
-                // read the next line
-                line = file.readLine();
-            }
-
-            // Don't forget to close the file!
-            file.close();
-
-        // Handle any errors that come up, such as the file not existing
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-            // Exit the program
-            System.exit(1);
-        }
-    }
-
-    /**
-     * Getter for the ArrayList of words
-     * @return the whitespace separated words
-     */
-    public ArrayList<String> getWords() {
-        return words;
-    }
-}
-
-
-
-// REPOBEE-SANITIZER-SHRED
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
+// REPOBEE-SANITIZER-END
 import java.util.Scanner;
 
-public class WordCounter {
+public class Game {
+    private static GameState state;
+    private static Scanner scanner = new Scanner(System.in);
 
-    HashMap<String, Integer> wordCounter;
-    ArrayList<String> words;
+    /**
+     * A simple arrow indicating that the program is waiting for player input.
+     * Why not try replacing this symbol with something else that you prefer?
+     */
+    private static final String PROMPT = "> ";
 
-    public WordCounter(File fileName) throws FileNotFoundException {
-        Scanner sc = new Scanner(fileName);
-        this.words = new ArrayList<>();
-        while(sc.hasNextLine()) {
-            this.words.add(sc.nextLine());
+    public static void main(String[] args) {
+// REPOBEE-SANITIZER-START
+        generateRoomsFromFile();
+// REPOBEE-SANITIZER-REPLACE-WITH
+//         generateRooms();
+// REPOBEE-SANITIZER-END
+        printWelcomeMessage();
+
+        // Main game loop, keep reading player input and update game state based on this.
+        // This loop should be changed to end once the player has won.
+        while (true) {
+            String command = getCommand();
+            CommandParser.parse(command, state);
         }
-        sc.close();
     }
 
-    public ArrayList<String> getWords(){
-        return this.words;
+    private static String getCommand() {
+        System.out.print(PROMPT);
+        // Read a line of user input from the terminal
+        String command = scanner.nextLine();
+        // Remove the prompt from the start of the line
+        command = command.replaceFirst(PROMPT, "");
+        return command;
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        WordCounter wc = new WordCounter(new File("hamlet.txt"));
-        System.out.println(wc.getWords());
+    private static void printWelcomeMessage() {
+        System.out.println("Welcome to The Colossal KTH Adventure, the exciting new text based adventure game.");
+        state.getCurrentRoom().lookAround();
+        CommandParser.printHelpMessage();
+    }
+
+    /**
+     * Generate the rooms needed for a very basic version of the game.
+     * In your version of the game, you should remove this method and read your own rooms from a file instead.
+     */
+    private static void generateRooms() {
+        // Create a set of rooms
+        Room start = new Room("You are at the Tekniska Högskolan subway station. You look around for " +
+                "someone handing out free samples, but there don't seem to be any today.");
+        Room borggarden = new Room("You are outside in borggården, there is a cold wind blowing.");
+        Room f1 = new Room("You are in the main F1 lecture hall, there is a very advanced " +
+                "math lecture going on. You don't understand anything.");
+        Room e43 = new Room("You are in an empty classroom in the E building. Someone has written " +
+                "\"I love INDA\" on the blackboard");
+        Room gul = new Room("You are in the Gul computer lab. Someone has left a computer running with " +
+                "a halfway finished INDA assignment open in the editor. You are tempted to look but manage " +
+                "to resist the urge.");
+
+        // Create exits leading from one room to another
+        start.addExit("north", borggarden);
+        borggarden.addExit("north", f1);
+        borggarden.addExit("west", e43);
+        borggarden.addExit("south", start);
+        f1.addExit("south", borggarden);
+        e43.addExit("east", borggarden);
+        e43.addExit("up", gul);
+        gul.addExit("down", e43);
+
+        // Set the starting room
+        state = new GameState(start);
+    }
+
+// REPOBEE-SANITIZER-START
+    // NOTE: This method could definitely use some more error handling, but represents
+    //       something that a student could be expected to write.
+    private static void generateRoomsFromFile() {
+        HashMap<String, Room> worldModel = new HashMap<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("rooms.txt"));
+            String line = reader.readLine();
+            while (line != null) {
+                String[] data = line.split(";");
+
+                if (data[0].equals("Room"))
+                    worldModel.put(data[1], new Room(data[2]));
+                else if (data[0].equals("Exit"))
+                    worldModel.get(data[1]).addExit(data[2], worldModel.get(data[3]));
+
+                line = reader.readLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error generating rooms from file: " + e.getMessage());
+            System.exit(1);
+        }
+
+        state = new GameState(worldModel.get("start"));
     }
 }
+
+public class GameState {
+    private Room currentRoom;
+
+    /**
+     * Create a new GameState with the player starting in the given room
+     * @param startingRoom the room the player starts in.
+     */
+    public GameState(Room startingRoom) {
+        currentRoom = startingRoom;
+    }
+
+    /**
+     * @return The room the player is currently in.
+     */
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    /**
+     * Update the room that the player is in.
+     * @param currentRoom the new current room.
+     */
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+}
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * The Room class contains information about a room (or some other place) that the player is currently in.
+ * @author Gabriel Skoglund
+ */
+public class Room {
+
+    /**
+     * The exits map contains keys which are directions and values which are the rooms that
+     * the exit leads to.
+     */
+    private Map<String, Room> exits = new HashMap<>();
+
+    private String description;
+
+    /**
+     * Create a new room.
+     * @param description the description of this room.
+     */
+    public Room(String description) {
+        this.description = description;
+    }
+
+    /**
+     * Add an exit from this room.
+     * @param direction the direction in which the exit is.
+     * @param toRoom the room that this exit leads to.
+     */
+    public void addExit(String direction, Room toRoom) {
+        exits.put(direction, toRoom);
+    }
+
+    /**
+     * Attempt to leave this room in the given direction.
+     * @param direction the direction in which to move the player.
+     * @return the room that the player ends up in. May be null if
+     *         there is no exit from this room in that direction.
+     */
+    public Room go(String direction) {
+        Room newRoom = exits.get(direction);
+        if (newRoom == null){
+            System.out.println("You can't go that way!");
+            printExits();
+        }
+        return newRoom;
+    }
+
+    /**
+     * Print the exits that are available from this room.
+     */
+    public void printExits() {
+        System.out.print("There are exits in the directions: ");
+        for (String direction : exits.keySet())
+            System.out.print(direction + " ");
+        System.out.println();
+    }
+
+    /**
+     * Look around the current room, printing the room descriptions and the
+     * available exits.
+     */
+    public void lookAround() {
+        System.out.println(description);
+        printExits();
+    }
+}
+
 
 
     """
@@ -270,6 +285,7 @@ public class WordCounter {
 
     prompt = (
         f"Based on the following task description, generate complete and functional Java solutions for each coding exercise. "
+        f"The description is directed towards the students so read it with that in mind and treat the task from the course leader perspective"
         f"The solutions should be well-structured, use meaningful variable names, include necessary comments for clarity, "
         f"and be ready to pass a comprehensive set of unit tests.\n\n"
         f"### Task Description\n\n"
