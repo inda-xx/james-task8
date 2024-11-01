@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-xypB77vpO2D290ZXlhCI7Czf.png?st=2024-11-01T09%3A28%3A51Z&se=2024-11-01T11%3A28%3A51Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-11-01T01%3A15%3A15Z&ske=2024-11-02T01%3A15%3A15Z&sks=b&skv=2024-08-04&sig=d%2Bw8fgsLdL7ZZWj9dUv74YkgUUwZFjmuwDYvVx/iH5M%3D)
+
 ## 🎮 Task: Develop a Simple Game Application
 
 Welcome to this engaging programming task where you will create a simple game application. The game will include essential functionalities such as player movement, a scoring system, and interactions with enemies. This project will help you master crucial skills: using data from files to instantiate objects, designing classes, and programming creatively. Let's dive into the exercises!
