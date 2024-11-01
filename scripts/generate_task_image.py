@@ -5,12 +5,20 @@ import os
 task_file_path = os.path.join("tasks", "new_task.md")
 
 def generate_image_url_from_description(description, client):
-    # Generate image using DALL-E 3 based on the task description
-    prompt = f"Create an illustration for this task: {description[:200]}..."
+    # Build a more descriptive prompt for DALL-E based on the task details
+    prompt = (
+        f"Create an illustration for a programming task based on the following theme:\n\n"
+        f"Theme: {description[:200]}...\n\n"  # Include a snippet of the description as a theme
+        "The illustration should capture the key elements of this task, which involves programming concepts. "
+        "Make it visually engaging and clear, with an emphasis on learning and creativity.\n\n"
+        "Make sure the image is clear, modern, and professional, suitable as an educational feature in a programming context."
+    )
+
+    # Generate image using DALL-E 3
     response = client.images.generate(
         model="dall-e-3",
         prompt=prompt,
-        size="1024x1024",
+        size="1024x720",
         quality="standard",
         n=1,
     )
@@ -18,6 +26,7 @@ def generate_image_url_from_description(description, client):
     # Get the URL of the generated image
     image_url = response.data[0].url
     return image_url
+
 
 def insert_image_url_into_markdown(image_url, markdown_path):
     # Read the existing task description and add the image URL at the top
