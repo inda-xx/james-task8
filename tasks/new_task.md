@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-Wk9bzlYUNjrL61iumFc2zKZn.png?st=2024-11-01T09%3A34%3A16Z&se=2024-11-01T11%3A34%3A16Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-11-01T01%3A24%3A02Z&ske=2024-11-02T01%3A24%3A02Z&sks=b&skv=2024-08-04&sig=GEU13aPkq4MzaUo3avMRzSqLFQanSzmKtPLqoMlsFHM%3D)
+
 # 🎮 Task: Build a Simple Game Application with Java
 
 In this task, you will create a simple game application with functionalities like player movement, a scoring system, and enemy interactions. The project will teach you how to use data from files to instantiate objects, design classes effectively, and apply creative programming techniques to solve problems.
