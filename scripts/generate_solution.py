@@ -377,31 +377,27 @@ def generate_with_retries(client, prompt, max_retries=3):
                 print("Retrying...")
     return None
 
-def commit_and_push_changes(branch_name, directory_path):
+def commit_and_push_changes(branch_name, file_path):
     try:
-        # Ensure we're on the correct branch
-        subprocess.run(["git", "checkout", branch_name], check=True)
-
         subprocess.run(["git", "config", "--global", "user.email", "actions@github.com"], check=True)
         subprocess.run(["git", "config", "--global", "user.name", "github-actions"], check=True)
 
-        # Add the .hidden_tasks directory to git
-        subprocess.run(["git", "add", directory_path], check=True)
+        subprocess.run(["git", "add", file_path], check=True)
+        subprocess.run(["git", "commit", "-m", f"Add solution for branch {branch_name}"], check=True)
 
-        # Commit the changes
-        subprocess.run(["git", "commit", "-m", "Add generated solution"], check=True)
+        # Safely pass the GITHUB_TOKEN in the environment for push
+        env = os.environ.copy()
+        if 'GITHUB_TOKEN' in env and env['GITHUB_TOKEN']:
+            env['GIT_ASKPASS'] = 'echo'
+            subprocess.run(
+                ["git", "push", "--set-upstream", "origin", branch_name],
+                check=True,
+                env=env
+            )
+        else:
+            print("Error: GITHUB_TOKEN is not set or is empty.")
+            return
 
-        # Push the changes
-        subprocess.run(
-            ["git", "push", "--set-upstream", "origin", branch_name],
-            check=True,
-            env={
-                **os.environ,
-                "GIT_ASKPASS": "echo",
-                "GIT_USERNAME": "x-access-token",
-                "GIT_PASSWORD": os.getenv("GITHUB_TOKEN")
-            }
-        )
     except subprocess.CalledProcessError as e:
         print(f"Error committing and pushing changes: {e}")
         sys.exit(1)

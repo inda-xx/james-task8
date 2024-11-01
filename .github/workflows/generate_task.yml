@@ -109,11 +109,13 @@ jobs:
         id: generate-solution
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python scripts/generate_solution.py "${{ secrets.OPENAI_TOKEN }}" "${{ needs.generate-task-description.outputs.branch_name }}"
       - name: Set branch name
         id: set-branch-name
         run: echo "::set-output name=branch_name::$(git rev-parse --abbrev-ref HEAD)"
+
 
   adversarial-review:
     runs-on: ubuntu-latest
