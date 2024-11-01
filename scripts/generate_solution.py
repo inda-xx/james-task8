@@ -377,30 +377,40 @@ def generate_with_retries(client, prompt, max_retries=3):
                 print("Retrying...")
     return None
 
-def commit_and_push_changes(branch_name, file_path):
+def commit_and_push_changes(branch_name, directory_path):
     try:
+        # Ensure we're on the correct branch
+        subprocess.run(["git", "checkout", branch_name], check=True)
+
         subprocess.run(["git", "config", "--global", "user.email", "actions@github.com"], check=True)
-        subprocess.run(["git", "config", "--global", "user.name", "github-actions"], check=True)
+        subprocess.run(["git", "config", "--global", "user.name", "GitHub Actions"], check=True)
 
-        subprocess.run(["git", "add", file_path], check=True)
-        subprocess.run(["git", "commit", "-m", f"Add solution for branch {branch_name}"], check=True)
+        # Add the .hidden_tasks directory to git
+        subprocess.run(["git", "add", directory_path], check=True)
 
-        # Safely pass the GITHUB_TOKEN in the environment for push
+        # Commit the changes
+        subprocess.run(["git", "commit", "-m", "Add generated solution"], check=True)
+
+        # Get the GitHub token from environment variables
+        github_token = os.getenv("GITHUB_TOKEN")
+        if not github_token:
+            print("Error: GITHUB_TOKEN is not set.")
+            sys.exit(1)
+
+        # Push the changes, using GITHUB_TOKEN for authentication
         env = os.environ.copy()
-        if 'GITHUB_TOKEN' in env and env['GITHUB_TOKEN']:
-            env['GIT_ASKPASS'] = 'echo'
-            subprocess.run(
-                ["git", "push", "--set-upstream", "origin", branch_name],
-                check=True,
-                env=env
-            )
-        else:
-            print("Error: GITHUB_TOKEN is not set or is empty.")
-            return
+        env["GIT_ASKPASS"] = "echo"
+        env["GITHUB_TOKEN"] = github_token
+        subprocess.run(
+            ["git", "push", "--set-upstream", "origin", branch_name],
+            check=True,
+            env=env
+        )
 
     except subprocess.CalledProcessError as e:
         print(f"Error committing and pushing changes: {e}")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
