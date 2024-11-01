@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-PEsegbHYmqlm5xVI4BEXWHha.png?st=2024-11-01T09%3A04%3A39Z&se=2024-11-01T11%3A04%3A39Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-11-01T01%3A28%3A44Z&ske=2024-11-02T01%3A28%3A44Z&sks=b&skv=2024-08-04&sig=qkDCbSP8jg10JhJWOaVcg%2BSGGgwAwfMyWr659kmKG7g%3D)
+
 ## 🎮 Game Development Task: Simple Game Application
 
 Welcome to this exciting programming task where you will design and implement a simple game application. This project will challenge your understanding of object-oriented programming concepts while encouraging creative thinking and experimentation. The game will include player movement, a scoring system, and enemy interactions. The core learning goals you will achieve are:
