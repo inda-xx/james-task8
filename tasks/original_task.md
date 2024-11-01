@@ -1,335 +1,354 @@
-# How to count words in Java
+# Adventure awaits!
 
-Say you are a scholar, curious to find out the number of times a word occurs
-in a text, maybe Shakespeare's _Hamlet_ for instance. In the old days, you would have
-to do it by hand, using pen and paper. Fortunately, we now have computers to do this tedious work.
-Your assignment this week will be to create a program that can perform
-such a task.
+For this week's assignment, you will be creating a fully playable text-based game based on some code provided
+for you. As opposed to earlier tasks, you will be given greater freedom to use your creativity and will be able to
+showcase what you have learned so far in this course.
 
+### 💀 Deadline
+
+This work should be completed before the exercise on **Friday 8 November**.
+
+**Important note** Due to this deadline, please think twice before creating your own game. It easily becomes very difficult to finish what you set out to do, so it might be better to start small so that you have something ready to hand in if you run out of time. If you do multiple commits during your development cycle you can later go back to a previous commit if you are not done by the deadline. 
+
+### 👩‍🏫 Instructions
+
+For instructions on how to do and submit the assignment, please see the
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-24/course-instructions#assignments).
+
+### 📝 Preparation
+
+- Review the [lecture slides on Reading and Writing](https://docs.google.com/presentation/d/15GxyDVs5BjzQ7IAB73NL4g-GOhIyCULG4hPJuMejbXU/edit#slide=id.p)
+- Review the [lecture slides on Design](https://docs.google.com/presentation/d/1Oqplsow5BUxu3-43WriFONmYzr_wxtmRwHsqDJzefPg/edit#slide=id.p)
+- Read and answer all questions in Module 8: [Class Design](https://qbl.sys.kth.se/sections/dd1337_programming/lesson/designing_classes)
 
 ### ✅ Learning Goals
 
 This week's learning goals include:
 
-- Using documentation
-- Reading from a text file
-- Using the `HashMap` class
+- Using data from files to instantiate objects
+- Designing classes
+- Programming creatively
+
+### 🚨 Troubleshooting Guide
+
+If you have any questions or problems, follow this procedure: <br/>
+
+1. Look at this week's [posted issues](https://gits-15.sys.kth.se/inda-24/help/issues). Are other students asking about your problem?
+2. If not, post a question yourself by creating a [New Issue](https://gits-15.sys.kth.se/inda-24/help/issues/new). Add a descriptive title, beginning with "Task *x*: *summary of problem here*"
+3. Ask a TA in person during the [weekly lab](https://queue.csc.kth.se/Queue/INDA). Check your schedule to see when the next lab is.
 
 We encourage you to discuss with your course friends, **but do not share answers!** Similarily, use of any AI services 🤖 are great to help explain things, **but please do not submit AI-generated solutions** - you must be both responsible for your own solutions and must be able to explain them under examination.
 
 ### 🏛 Assignment
 
-#### Exercise 7.0 -- Reading words from a file
+In the earlier days of computing, [text-based adventure games](https://en.wikipedia.org/wiki/Interactive_fiction)
+were a popular form of entertainment, and captured the imagination of many budding programmers. In the [src](src) folder
+you can find some code for a very rudimentary game, and you should begin by playing and exploring this game.
+You can play the game by going to the [src](src) folder in your terminal and typing:
 
-We will begin by creating a class for reading text from 
-a file and splitting it into separate words. In your [`src`](src)
-folder, create a file containing a class called `FileWordSplitter`.
-Add a `private` field to your class of type `ArrayList<String>` called
-`words`. 
-
-Now add a constructor to your class with the following header:
-
-```java
-public FileWordSplitter(String filename)
+```bash
+javac Game.java
+java Game
 ```
 
-The constructor should read the file with the given filename and 
-add all the words in the file to the `words` `ArrayList`. You can find a guide 
-to reading a file with Java below.
+> **Assistant's note:** If you have a version of Java less than 14 then you will get a compile error linked to the Switch 
+> statement in `CommandParser.java` (see below). Ric did when he tested this code. The solution is to goto https://www.oracle.com/java/technologies/downloads/
+>  and update your runtime. You can always check your version of Java in the terminal by typing `$ java --version`
 
-When you read from a file with `nextLine` you get a `String` that will be 
-a whole _line_ of the text. You will need to split this up into individual
-words. Look in the documentation for the [String class](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html),
-and see if you can find a method for splitting a `String` into smaller strings.
-For each line, add the words from the line to the `words` `ArrayList`.
-In order to make this exercise slightly easier, we have provided a sample file [`hamlet.txt`](src/hamlet.txt)
-where all punctuation marks have been removed, and we have made sure that all words are separated by exactly
-one space character (` `).
+Once you have played the game and explored what you can do (which is not a lot) take a look at the source code 
+and try to understand how the game works. You don't need to understand everything, but the comments in the code should
+hopefully explain the most important parts. In the `parse` method of the `CommandParser` class, you will also find
+a `switch` expression, which is a more compact way of writing branching code. You can find a summary of `switch` 
+expressions below.
 
 <details>
-    <summary> 🛠 Reading a file line by line</summary>
+<summary> 📚 Java switch expressions </summary>
 
+Writing a long chain of `if/else` statements can lead to code that is hard to read, and for this a
+switch expression is often a better choice. Instead of using a series of `if` statements such as 
 ```java
-try {
-    // Attempt to open a text file
-    BufferedReader file = new BufferedReader(new FileReader("my_file.txt"));
-    
-    // Try to read the first line of the file
-    String line = file.readLine();
-    
-    // Keep reading while there are lines left
-    while (line != null){
-        // TODO: Add some code here to do something with the line
-        
-        line = file.readLine();
-    }
-
-    // Don't forget to close the file!
-    file.close();
-// Handle any errors that come up, such as the file not existing
-} catch (IOException e) {
-    System.out.println("Something went wrong: " + e.getMessage());
-    // Exit the program    
-    System.exit(1);     
+if (number == 1) {
+    System.out.println("Uno");
+} else if (number == 2) {
+    System.out.println("Dos");
+} else if (number == 3) {
+    System.out.println("Tres");
+} else {
+    System.out.println("Muchos");
 }
 ```
 
-In this example, we simply shut down the program if something goes 
-wrong. In actual "real world" code, 
-it is more common to have some form of a fallback solution, such as
-prompting the user to select a different file if the file was not
-found.
+you can use a `switch` expression of the form:
 
-Remember that you need to _import_ all classes that you want to use
-(such as `BufferedReader`).
+```java
+switch (number) {
+    case 1 -> System.out.println("Uno"); // If number is one, print "uno" to the terminal
+    case 2 -> System.out.println("Dos");
+    case 3 -> System.out.println("Tres");
+    default -> System.out.println("Muchos"); // The default case will cover all other numbers
+}
+```
+
+The program will compare the value of `number` to each case, and if there is a match, the code to the right of `->`
+will be executed. In the code above, it is just a single method call, but it is possible to also include several lines 
+of code within `{}`, such as 
+
+```java
+case 1 -> {
+    System.out.println("Uno");
+    numberIsAPrime = false;
+}
+case 2 -> {
+    System.out.println("Dos");
+    numberIsAPrime = true;
+}
+// etc.
+```
+
+However, there are certain limitations to `switch` expressions compared to `if/else` statements. 
+The value on which to switch (`number` in the example above) must evaluate to a primitive type (such as `int`), 
+a `String` or an [enum type](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html). Furthermore, 
+the value after `case` must be a _constant_ such as `1` or `"hello"`, so it's not possible to add a case such as
+
+```java
+case (number < 1) -> System.out.println("Nada");
+```
+
+Finally, the cases must be _exhaustive_. A switch expression such as 
+
+```java
+switch (number) {
+    case 1 -> System.out.println("Uno");
+    case 2 -> System.out.println("Dos");
+}
+```
+
+will give rise to a compiler error, since there are cases not covered by the `switch` expression. To cover every case
+it is therefore common to include a `default` case at the end which will always be executed if no other `case` applies.
+
+Java is a language that is constantly evolving and adding new features, so you might sometimes see older and slightly different
+`switch` code. The details of all different kinds of switches are beyond the scope of this course, but if you are
+interested you can also read about the older [switch statement](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html).
+</details>
+
+#### Exercise 6.0 -- Loading a World Model from File  
+
+In the initial version of the [`Game.java`](src/Game.java) code, there is a method called `generateRooms` that creates
+the rooms that the player can move through. This works all right for a simple game, but it's not very convenient, since
+you will need to make changes to the code and recompile the whole game if you want to change the description 
+of a room.
+
+Having completed the IO exercises in previous tasks, you should be able to see the
+potential for storing the rooms for the game as a text file and creating Room objects from these descriptions. 
+In the `Game` class, create a new method with the header
+
+```java
+private void generateRoomsFromFile(String filename) 
+```
+
+This method should read information from a text file, and set up the game according to this information.
+
+One complication we must deal with is the order of creating rooms and then
+linking their exits. While it is possible to include the room information and
+exits on a single line, it creates a parsing problem, where we create a `Room`
+object, but the adjacent `Room`s that you can go to have not yet been created. The original
+`generateRooms()` can act as a guide for a simple solution, where we create the rooms
+first, then assign the exits. To solve this we can prefix lines in our file and
+test with a conditional as we read them. 
+
+1. First, add all rooms. These should be listed in the file as `TYPE;ROOM_NAME;DESCRIPTION`
+2. Second, add the exits to the rooms. These should be listed in the file as: `TYPE;FROM;DIRECTION;TO`
+
+For example:
+
+```java
+// TYPE; ROOM_NAME; DESCRIPTION
+Room,Name1,Description1
+Room,Name2,Description2
+// TYPE; FROM; DIRECTION; TO
+Exit,Name1,East,Name2
+Exit,Name2,West,Name1
+```
+
+As long as you first define all rooms, and then all the exits, you can build and link the world model of the game. 
+Below you can see an outline of how the method could be written.
+
+<details>
+    <summary> 🛠 Method outline </summary>
+
+```java
+private void generateRoomsFromFile(String filename) {
+    // create a HashMap<String, Room> worldModel to store the game world as it is read from file
+        
+    // Open the file with the room data  
+    // While there are more lines in the file, read the next line
+    // If the line starts with "Room" then extract the Name and Description 
+    // Create a Room with this information and add it to the HashMap, using Name as the key
+    
+    // Else if the line starts with "Exit" assume the necessary rooms exist in the HashMap and
+    // use the addExit() method of the Room class to link Rooms together
+    // Hint: this requires us to acces the HashMap twice like:
+    // worldModel.get("subway").addExit("north", worldmodel.get("borggarden"));
+    
+    // Remember to set the currentRoom of the GameState class to the starting room as the final step
+    // You can either give the starting room the name "start"
+    // or modify the logic above to assume the first room is the starting point
+}
+```
+
+</details>
+
+We have provided you with a [text file](/src/rooms.txt) which matches the rooms set up in the `generateRooms` method.
+Use this file to make sure that your code works correctly and that the game is still playable.
+
+> **Assistant's note:** If you wonder where to begin, have a look at how you read a file line by line in task-7. 
+> The only difference should be that the "delimiter" in this case should be a semicolon (`;`) as opposed to a blank space.
+
+#### Exercise 6.1 -- Game design
+
+Now it's time to redesign the existing game to something a bit more fun. Start by creating your own game scenario. 
+Do this away from the computer. Don't worry about implementation, classes, or even programming in general, 
+just think about inventing an interesting game that you'd like to play. The game can be anything that has as its core 
+concept a player moving through different locations. Here are some examples:
+
+<details>
+<summary> 🛠 Ideas for game concepts </summary>
+
+- You are trying to find your way to an exam. The doors are closing soon, but you are lost in the M building.
+- You are at campus at midnight and must run to the subway while a monster is chasing you.
+- You are lost in a shopping mall and must find the exit.
+- You are on a field trip and must find a bathroom. 
+- You are lost in a hypercube and must teleport your way out.
+- You are from the bomb squad and must find and defuse a bomb before it goes off.
+- You are an adventurer who searches through a dungeon full of monsters and other characters.
+- You are a cat, lost and alone in a cyber city, and must find your cat's family.
+</details>
+
+You are completely free to design any text-based game you want. However, in order for this to be a good programming 
+task we also have some practical requirements that you need to take into consideration, you can read these below 
+in _Exercise 6.2_. 
+
+You do not need to submit anything for this exercise, but it's a good idea to write down what you have planned and
+draw a map of the game world using pen and paper or your favorite drawing program before you start writing code.
+
+#### Exercise 6.2 -- Implementing your design
+
+Once you have settled on a game you want to create, it's time to implement this in Java.
+You should work based on the existing game code in the [src](src) folder but are free to modify this code in any way you 
+like. You may find that your initial game concept is too ambitious or difficult, so keep iterating on your design as you work.
+
+Your game _must_ fulfill these basic requirements:
+
+1. You are not allowed to reuse any of the rooms from the first version of the game (you are allowed to design a game
+   that takes place at KTH, but you need to create your own rooms and layout).
+2. The rooms must be read from a file using the `generateRoomsFromFile` method you created in _Exercise 6.0_. 
+3. It must be possible to win and lose the game by taking (or failing to take) specific game actions. Once the game
+   is over the game loop should end and a different message should be printed depending on if the player won or lost.
+4. You must create at least one new class and use this class in your game. This class could for instance be
+   used to model items that the player can pick up, keys required for certain doors, monsters that the player can fight,
+   or any other thing you can think of.
+5. The game world should have a minimum of 5 rooms.
+6. In order to make it easier for your TA to test your game, you must add a map of your game world in the
+   [docs](docs) directory. This can be in the form of a photo or scan of a hand-drawn map, or created using software
+   such as [diagrams.net](https://app.diagrams.net/).
+7. You must add the following information to the [docs/README.md](docs/README.md) file:
+    - A description of the theme of your game.
+    - How to win/lose.
+    - What class or classes you chose to create and how this is used in the game.
+
+If you get stuck at any point or would like help solving a particular problem, remember to follow the steps of the
+🚨 Troubleshooting Guide.
+
+> **Assistant's note:** It's quite easy to get carried away and want to create a huge and complex game,
+> but we would recommend that you try to keep it somewhat simple. It's better to create a smaller, well-designed
+> game instead of a huge game that is full of bugs. However, if you have the time there is no limit to what features
+> you can add to this project.
+
+#### Exercise 6.3 -- Creating documentation
+
+You should already have read the documentation for the classes and methods in the original game classes,
+and it should hopefully be evident to you how useful documentation can be for understanding code.
+Now it's time to add your own class and method documentation comments. 
+
+Using Javadoc, write the class documentation for all the `public` classes and methods that you have created or modified.
+First, briefly review the **Format of a Doc Comment** and **Example of Doc Comments** sections from the
+[official documentation](http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html)
+on Javadoc from Oracle. Then go through your classes and add Javadoc according to the requirements below:
+
+<details>
+<summary> 📚 What to add to a class Javadoc comment </summary>
+
+**The documentation of a class should at least include:**
+* A comment describing the overall purpose and characteristics of the class.
+* The author’s name, prefixed with the `@author` tag. If there are several authors, you should give each a separate 
+line. If you have modified a file that already has an author, make sure to add your own name as well.
 </details>
 
 <details>
-    <summary> 📚 A brief note on regex </summary>
+<summary> 📚 What to add to a method Javadoc comment </summary>
 
-In the documentation for [`String`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) 
-class, you might find methods that requires a _Regular Expression_ (or _regex_).
+**The documentation of a method or constructor should at least include:**
+* A description of the purpose and function of the method.
+* Name and description of each parameter (use the `@param` tag). The types of parameters and return values should 
+**not** be written in the Javadoc, as these are already in the method/constructor header!
+* A description of the value returned (use the `@return` tag). Note that this is not applicable to constructors and `void` methods.
+* If the method throws an exception, it should be explained what will cause the method to do this (use the `@throws` tag).
 
-You will get familiar with these kinds of expressions as you progress in your studies. For now, you can think of them as search patterns.
-Oracle has an [official tutorial](https://docs.oracle.com/javase/tutorial/essential/regex/intro.html) on Java and regex, but it is fairly advanced. 
-If you get stuck, follow the steps in the 🚨 **Troubleshooting Guide**.
+Getters and setters are in general trivial, but the field they correspond to may not be. It is reasonable to describe 
+the purpose of the field, rather han what the method does (it should in most cases be obvious that a setter updates a 
+value).
+
+In general, methods/constructors that are not `public` (such as ones with access modifier `protected`, `private` or
+`package private`) are usually only given Javadoc comments if they are complex and require an explanation 
+or part of some larger machinery that is not obvious.
 </details>
 
-#### Exercise 7.1 -- Getting the words
-
-Add a _getter_ to `FileWordSplitter` that returns the `words` that you read from the file.
-
-Now is a good time to check so that your class works as intended.
-In the [`src`](src) folder you have been provided a file called [`hamlet.txt`](src/hamlet.txt).
-This file contains the text from Shakespeare's _Hamlet_ (without punctuation). If you run the following code
-(in a main method or using JShell) you should see that the fourth word
-of the text is indeed `"Hamlet"`:
-
-```java
-FileWordSplitter splitter = new FileWordSplitter("hamlet.txt");
-ArrayList<String> hamletWords = splitter.getWords();
-System.out.println(hamletWords.get(3)); // Get the fourth word in hamlet.txt
-```
-
-#### Exercise 7.2 -- Textual analysis
-
-Now it's time to create a class for analyzing the text and see if we can glean any insights.
-Start by creating a new Java class called
-`FileTextAnalyzer` in the [`src`](src) directory. Add a `private` field called 
-`words` of type `FileWordSplitter` to your class, and add a constructor
-with the following header:
-
-```java
-public FileTextAnalyzer(String filename)
-```
-
-The constructor should create a new `FileWordSplitter` object using the given file 
-and save it in the `words` field.
-
-#### Exercise 7.3 -- Counting words
-
-Let's start with simply counting the number of words in the text. Create a new method with the header:
-
-```java
-public int wordCount()
-```
-
-This method should simply return the number of words in the file. 
-
-<details>
-    <summary> 📚 The Unix word count explained (and how the check your solution) </summary>
-
-On Linux and MacOS you have the command line program `wc` (Word Count). 
-If you open up your terminal, and type `man wc` (short for *manual wordcount*), you will find the manual for 
-your system's integrated word count program (press *q* to end the manual).
-You can use it to check so that your code works as intended. Run the following example in the terminal (in the [`src`](src) folder):
-
-```bash
-wc -w hamlet.txt
-```
-
-you should get the output:
-
-```bash
-30720 hamlet.txt
-```
-
-telling you that the file contains 30720 words. You can use this to make sure that your `wordCount` method works correctly.
-</details>
-
-#### Exercise 7.4 -- Counting different words using a `HashMap`
-
-Let's move on to counting the number of times different words occur in the text.
-For this, we will be using a data structure called a `HashMap` in Java (you might also find the 
-same data structure called "dictionary" or "associative array" or something similar in other programming languages).
-You can find a brief summary of how to work with `HashMaps` below.
-
-Add a field called `wordOccurrences` to your `FileTextAnalyzer` class. This field should be a `HashMap` that associate
-Strings with Integers. Add code in your constructor for iterating over every word in the file and counting the
-number of times words occur. To test your implementation, you may also want to add a *getter* (`getwordOccurrences`). You don't have to make the keys case insensitive at the moment.
-
-<details>
-    <summary>📚 The HashMap class</summary>
-
-The [`HashMap`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html) stores a `key` and an associated `value`. The type of the key and the value can be any Java class (but not primitive types) and therefore the class is _parameterized_ by two types. You can create a `HashMap` that has `String` keys and `Integer` 
-values as:
-
-```java
-HashMap<String, Integer> myHashMap = new HashMap<>();
-```
-
-Note the similarity to creating an `ArrayList`, only with two class names instead of one.
-
-You can _associate_ a value with a key using the `put` method. For instance
-
-```java
-myHashMap.put("Hello", 1337);
-```
-
-will link the key `"Hello"` to the value `1337`. It's important to remember that the key _must_ be unique, but there
-can be several of the same value. For instance, it is not possible to have a `HashMap` where you have two keys with the
-value `"Hello"`.
-
-You can _get_ the value associated with a key using the `get` method:
-
-```java
-// Will store the value '1337' in the variable 'valueOfHello'
-int valueOfHello = myHashMap.get("Hello"); 
-```
-
-A `HashMap` can be seen as a function (in the mathematical sense) taking one input (the key) and giving
-one output (the value). Another term for a function sometimes used in mathematics is a 
-[map](https://en.wikipedia.org/wiki/Map_(mathematics)), which explains the somewhat strange name of the `HashMap`
-(we'll get to the "hash" part later in the course).
-
-A common thing you want to do with a `HashMap` is to update the value of some key, for instance, adding a
-word to the count, or changing the value associated with `"Hello"` to `1338`. This can be done using a combination
-of `get` and `put`:
-
-```java
-int oldValue = myHashMap.get("hello");
-myHashMap.put("Hello", oldValue + 1);
-```
-
-Since this is something you want to do often, there is a special method in `HashMap` called `merge`, that
-allows you to take a value and _merge_ it with another value. The code above could also be written
-
-```java
-myHashMap.merge("Hello", 1, Integer::sum);
-```
-
-This will take the old value associated with `"Hello"` and merge it with `1` using the `sum` method from the `Integer`
-class. Simply put, it will associate `oldValue + 1` with `"Hello"`. Don't worry if this seems a bit weird and abstract
-right now, for this task you can simply use the code given above. If you would like an in-depth explanation of the latter example, we encourage you to ask a TA!
-</details>
-
-<details>
-    <summary> 🛠 Pseudocode </summary>
-
-We are going to give you so-called [*pseudocode*](https://en.wikipedia.org/wiki/Pseudocode)
-describing how to count word occurrences.
-Pseudocode serves as a template for your code but is not written in any actual programming language.
-You will surely come across more examples like this as you progress in your studies, 
-and being able to read and formulate pseudocode is a skill every programmer should have.
-
-```
-words := all words in hamlet.txt
-map := empty hashmap
-∀ word ∈ words:
-    if word ∉ map
-        put word in map with count 1
-    else 
-        increment count for word by 1
-```
-
-In this example, we use mathematical notation. Here is an explanation of the symbols:
-
-* `:=` a new definition
-* `∀` *for all*
-* `∈` *in* 
-* `∉` *not in*
-
-There are no fixed standards for how to write pseudocode, so you will probably
-see many different styles being used. In general, pseudocode tends to be more abstract
-and "_high level_" than actual running program code.
-</details>
-
-#### Exercise 7.5 -- Capitalization matters (and `occurrencesOf`)!
-
-One important thing to remember is that _capitalization matters_. Java considers 
-`"Hello"` and `"hello"` to be two completely different strings, even though they contain the same English word.
-Of course, if we have the text `"Hello hello my friends"`, we want to make sure that we count two occurrences 
-of `"hello"`. The [String](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html)
-class contains a method for converting all letters to lowercase. Make sure to apply this method to every word 
-that you use as a key in your `HashMap`, this way `"Hello"` and `"hello"` will count as the same word.
-
-Add a method with the header: 
-
-```java
-public int occurrencesOf(String word) 
-```
-
-This should simply return the number of times a word occurs in the file. 
-If you use the [`hamlet.txt`](src/hamlet.txt) file you should be able to see that the word `"Hamlet"`
-occurs 92 times. This method should also be _case-insensitive_, so make sure that you get the same result
-for the string `"hamlet"`. Make sure that you return `0` for words that are not present in the file. 
-
-#### Exercise 7.6 -- Word frequencies
-
-Add a method with the header
-
-```java
-public double frequencyOf(String word)
-```
-
-that returns the proportion of the text that consists of that word. As an example, since the file 
-[`hamlet.txt`](src/hamlet.txt) contains 92 occurrences of `"Hamlet"` and 30720 words in total.
-`frequencyOf("Hamlet")` should return `0.002994791666666667` (_92 / 30720_). Once again, this method should
-be _case-insensitive_ and return `0` if a word that is not in the text is used as an argument.
-
-<details> 
-    <summary> 📚 Type conversion </summary>
-
-You might find yourself with the error: `Type mismatch: cannot convert from int to double`.
-The problem here is that we want the result as a double, but we
-divide two whole numbers. As a default, Java will perform _integer division_, so that _5 / 2_ gives the value _2_
-instead of _2.5_. In order to solve this you will need to use [_type conversion_](https://en.wikipedia.org/wiki/Type_conversion)
-(sometimes called _casting_) to convert an `int` to a `double`. In Java, this is done by putting a type name in
-parenthesis in front of the value you want to convert, such as 
-```java
-int fiveAsAnInt = 5;
-double fiveAsADouble = (double) fiveAsAnInt;
-```
-</details>
-
-#### Exercise 7.7 -- Unique words
-
-As a final part of our `FileTextAnalyzer` class, let's calculate the number of _unique_ words in a file.
-Create a method with the header:
-
-```java
-public int uniqueWordCount()
-```
-
-Here we can use the special property of `HashMap`, which is that the keys have to be unique. There is also a special method
-in the `HashMap` class for getting all the keys. Read the 
-[documentation](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html)
-and use this method in your code. You should find that _Hamlet_ contains 4810 unique words.
+For examples of good Javadoc, see the files you have been provided in the [src](src) directory. Good Javadoc will 
+become a **minimum requirement** in all future assignments in this and subsequent courses, whenever you have created or modified a class.
+You may be asked to **resubmit work if the documentation is of a poor standard**. It can be a good habit to 
+always double-check so that all your code is properly documented before you create a git commit.
 
 ### ❎ Checklist 
 
-- [ ] Create class `FileWordSplitter`.
-  - [ ] Add private field `words`. 
-  - [ ] Add constructor using `public FileWordSplitter(String filename)`. Make the constructor read all words in a given file and add them to `words`.
-  - [ ] Add a getter that returns `words`.
-- [ ] Create class `FileTextAnalyzer`.
-  - [ ] Add private field `words` of type `FileWordSplitter`.
-  - [ ] Add a constructor `public FileTextAnalyzer(String filename)`. Make it assign a new `FileWordSplitter` to `words`.
-  - [ ] Add a method `public int wordCount()` to count the number of words in a file. 
-  - [ ] Add a field called `wordOccurrences` of type `HashMap` that associate Strings with Integers.
-  - [ ] In the constructor, add all words in the file as keys to `wordOccurrences` and set the corresponding value to the number of occurrences.
-  - [ ] Add a getter for `wordOccurrences` called `getwordOccurrences`.
-  - [ ] Make your code case insensitive, meaning it should not matter if a word is capitalized or not. 
-  - [ ] Add a method to count the number of occurrences of a specific word using method `public int occurrencesOf(String word)`. Make it case insensitive.
-  - [ ] Add a method `public double frequencyOf(String word)` to print out the frequency of a specific word.
-  - [ ] Add a method `public int uniqueWordCount()` that prints the total number of unique words in a file. 
+- [ ] Update to Java 14 or higher.
+- [ ] Checkout the game and source code.
+- [ ] Create rooms and exits as text files which can then be imported into the game using `private void generateRoomsFromFile(String filename)`.
+- [ ] Come up with an own game idea that utilizes the already existing code. 
+- [ ] Code your game and follow these instructions:
+  - [ ] You have not reused any of the rooms from the first version of the game (but the game can still take place at KTH!).
+  - [ ] The rooms must be read from a file using the `generateRoomsFromFile` method you created in _Exercise 6.0_. 
+  - [ ] It is possible to win and lose the game by taking (or failing to take) specific game actions. 
+  - [ ] The game loop should ends on game over with a different message depending on if the player win or lose.
+  - [ ] You have created at least one new class and used it in your game.
+  - [ ] The game world have at least 5 rooms.
+  - [ ] Add a map of your game world in the [docs](docs) directory. This can be in the form of a photo or scan of a hand-drawn map, or created using software such as [diagrams.net](https://app.diagrams.net/).
+  - [ ] Add the following information to the [docs/README.md](docs/README.md) file:
+    - A description of the theme of your game.
+    - How to win/lose.
+    - What class or classes you chose to create and how this is used in the game.
+- [ ] Add Javadoc documentation to your files containing:
+  - [ ] A comment describing the overall purpose and characteristics of the class.
+  - [ ] The author’s name, prefixed with the `@author` tag. If there are several authors, you should give each a separate line. If you have modified a file that already has an author, make sure to add your own name as well.
+- [ ] Add Javadoc documentation to your methods and constructors containing:
+  - [ ] A description of the purpose and function of the method.
+  - [ ] Name and description of each parameter (use the `@param` tag). The types of parameters and return values should **not** be written in the Javadoc, as these are already in the method/constructor header!
+  - [ ] A description of the value returned (use the `@return` tag). Note that this is not applicable to constructors and `void` methods.
+  - [ ] If the method throws an exception, it should be explained what will cause the method to do this (use the `@throws` tag).
+    
+> **Assistant's Note:** We've set up a checklist for you. Use it for a last look at your work before handing it in. You don't have to, but if you want to check off tasks, just put an "x" in the brackets in the README.md file.
+
+### 🐞 Bugs and errors?
+
+If you find any inconsistencies (spelling errors, grammatically incorrect sentences etc) or errors in this exercise, please open a [New Issue](https://gits-15.sys.kth.se/inda-24/help/issues/new) with the title "Task *x* Error: *summary of error here*". Found bugs will be rewarded by mentions in the acknowledgment section.
+
+### 🙏 Acknowledgments
+
+This task was designed by                <br>
+[Linus Östlund](mailto:linusost@kth.se)  <br>
+[Sofia Bobadilla](mailto:sofbob@kth.se)  <br>
+[Gabriel Skoglund](mailto:gabsko@kth.se) <br>
+[Arvid Siberov](mailto:asiberov@kth.se)  <br>
+[Alexander Runebou](mailto:alerun@kth.se)<br>
+    
+Proofreading & Bug fixes by <br>
+[Jesper Lindeberg ]()   <br>
