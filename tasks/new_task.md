@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-LGdA5jkdcYgKmFG6I2MjHASX.png?st=2024-11-01T14%3A04%3A11Z&se=2024-11-01T16%3A04%3A11Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-11-01T01%3A11%3A25Z&ske=2024-11-02T01%3A11%3A25Z&sks=b&skv=2024-08-04&sig=GAryfHDoYM6/TnqlvRntKpy9lIe0q6Om3I8s4DtSMpg%3D)
+
 ## 🎮 Game Development Challenge: Build a Simple Interactive Game
 
 Welcome to the Game Development Challenge! In this task, you will embark on the exciting journey of creating a simple game application that includes player movement, a scoring system, and enemy interactions. The game will employ object-oriented programming principles to create a maintainable and dynamic application. Your game should creatively use data from files to influence gameplay, offering a unique experience every time it's run.
