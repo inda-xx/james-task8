@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-XVurTTYv9KqduS2N6chAYdQV.png?st=2024-11-01T09%3A12%3A48Z&se=2024-11-01T11%3A12%3A48Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-11-01T01%3A15%3A29Z&ske=2024-11-02T01%3A15%3A29Z&sks=b&skv=2024-08-04&sig=wd60iV%2BPE5eU4gHoiRrMZKUChF7K1eo9wzoLtph6u18%3D)
+
 ## 🎮 Simple Game Application Task
 
 In this task, you will create a simple game application that includes player movement, a scoring system, and enemy interactions. The game will load initial configurations and player details from files, instantiate objects, and provide an interactive gaming experience. Through this task, you will employ object-oriented design, utilize file input/output for dynamic data handling, and creatively program gameplay functionality. 
