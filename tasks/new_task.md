@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-0zxX0c4NyMeujElI24dxUKE8.png?st=2024-11-01T08%3A45%3A42Z&se=2024-11-01T10%3A45%3A42Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-11-01T01%3A18%3A17Z&ske=2024-11-02T01%3A18%3A17Z&sks=b&skv=2024-08-04&sig=JYCftg2KOnPVN5iDmqOA1T%2BI3FFZe47oP2xTIaOpAuE%3D)
+
 # 🎮 Java Game Development Task: Simple Adventure
 
 Welcome to your exciting journey into Java programming through game development! In this task, you will create a simple adventure game with core functionalities like player movement, scoring, and enemy interactions. This will be your playground to creatively apply file handling, class design, and creativity in programming.
