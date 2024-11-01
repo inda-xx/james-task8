@@ -383,7 +383,7 @@ def commit_and_push_changes(branch_name, directory_path):
         subprocess.run(["git", "checkout", branch_name], check=True)
 
         subprocess.run(["git", "config", "--global", "user.email", "actions@github.com"], check=True)
-        subprocess.run(["git", "config", "--global", "user.name", "GitHub Actions"], check=True)
+        subprocess.run(["git", "config", "--global", "user.name", "github-actions"], check=True)
 
         # Add the .hidden_tasks directory to git
         subprocess.run(["git", "add", directory_path], check=True)
@@ -391,26 +391,20 @@ def commit_and_push_changes(branch_name, directory_path):
         # Commit the changes
         subprocess.run(["git", "commit", "-m", "Add generated solution"], check=True)
 
-        # Get the GitHub token from environment variables
-        github_token = os.getenv("GITHUB_TOKEN")
-        if not github_token:
-            print("Error: GITHUB_TOKEN is not set.")
-            sys.exit(1)
-
-        # Push the changes, using GITHUB_TOKEN for authentication
-        env = os.environ.copy()
-        env["GIT_ASKPASS"] = "echo"
-        env["GITHUB_TOKEN"] = github_token
+        # Push the changes
         subprocess.run(
             ["git", "push", "--set-upstream", "origin", branch_name],
             check=True,
-            env=env
+            env={
+                **os.environ,
+                "GIT_ASKPASS": "echo",
+                "GIT_USERNAME": "x-access-token",
+                "GIT_PASSWORD": os.getenv("GITHUB_TOKEN")
+            }
         )
-
     except subprocess.CalledProcessError as e:
         print(f"Error committing and pushing changes: {e}")
         sys.exit(1)
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
