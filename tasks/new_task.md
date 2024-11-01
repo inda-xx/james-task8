@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-yxQEEIoqZyGSyu7qM53OhSC7.png?st=2024-11-01T09%3A06%3A51Z&se=2024-11-01T11%3A06%3A51Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-11-01T01%3A09%3A40Z&ske=2024-11-02T01%3A09%3A40Z&sks=b&skv=2024-08-04&sig=w6xIIkvPpW48/NKshzQEvBpKuEmrl6cLMVO56pgBdFU%3D)
+
 ## 🎮 Simple Game Development Task
 
 Welcome to your new challenge! In this task, you will create a simple game application that encompasses essential functionalities such as player movement, a scoring system, and enemy interactions. Through this project, you will strengthen your understanding of object instantiation using data from files, class design, and creative programming.
