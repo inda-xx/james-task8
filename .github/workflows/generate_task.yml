@@ -59,6 +59,8 @@ jobs:
   generate-task-image:
     runs-on: ubuntu-latest
     needs: generate-task-description
+    outputs:
+      branch_name: ${{ steps.set-branch-name.outputs.branch_name }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -89,14 +91,14 @@ jobs:
 
   generate-solution:
     runs-on: ubuntu-latest
-    needs: generate-task-description
+    needs: generate-task-image
     outputs:
       branch_name: ${{ steps.set-branch-name.outputs.branch_name }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: ${{ needs.generate-task-description.outputs.branch_name }}
+          ref: ${{ needs.generate-task-image.outputs.branch_name }}
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -109,13 +111,11 @@ jobs:
         id: generate-solution
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python scripts/generate_solution.py "${{ secrets.OPENAI_TOKEN }}" "${{ needs.generate-task-description.outputs.branch_name }}"
+          python scripts/generate_solution.py "${{ secrets.OPENAI_TOKEN }}" "${{ needs.generate-task-image.outputs.branch_name }}"
       - name: Set branch name
         id: set-branch-name
         run: echo "::set-output name=branch_name::$(git rev-parse --abbrev-ref HEAD)"
-
 
   adversarial-review:
     runs-on: ubuntu-latest
@@ -152,14 +152,14 @@ jobs:
 
   generate-tests:
     runs-on: ubuntu-latest
-    needs: generate-solution
+    needs: adversarial-review
     outputs:
       branch_name: ${{ steps.set-branch-name.outputs.branch_name }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: ${{ needs.generate-solution.outputs.branch_name }}
+          ref: ${{ needs.adversarial-review.outputs.branch_name }}
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -172,7 +172,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_TOKEN }}
         run: |
-          python scripts/generate_tests.py "${{ secrets.OPENAI_TOKEN }}" "${{ needs.generate-solution.outputs.branch_name }}"
+          python scripts/generate_tests.py "${{ secrets.OPENAI_TOKEN }}" "${{ needs.adversarial-review.outputs.branch_name }}"
       - name: Set branch name
         id: set-branch-name
         run: |
@@ -207,7 +207,7 @@ jobs:
 
   generate-template-code:
     runs-on: ubuntu-latest
-    needs: adversarial-review
+    needs: adversarial-test-review
     outputs:
       branch_name: ${{ steps.set-branch-name.outputs.branch_name }}
     steps:
@@ -215,7 +215,7 @@ jobs:
         id: checkout
         uses: actions/checkout@v3
         with:
-          ref: ${{ needs.adversarial-review.outputs.branch_name }}
+          ref: ${{ needs.adversarial-test-review.outputs.branch_name }}
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -229,7 +229,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_TOKEN }}
         run: |
-          python scripts/generate_template_code.py "${{ secrets.OPENAI_TOKEN }}" "${{ needs.adversarial-review.outputs.branch_name }}"
+          python scripts/generate_template_code.py "${{ secrets.OPENAI_TOKEN }}" "${{ needs.adversarial-test-review.outputs.branch_name }}"
       - name: Set branch name
         id: set-branch-name
         run: |
