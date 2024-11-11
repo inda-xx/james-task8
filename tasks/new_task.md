@@ -1,3 +1,5 @@
+![Task Image](https://oaidalleapiprodscus.blob.core.windows.net/private/org-asPC5Skb6EoE1i324HhdGnV1/user-4VyHdJuNDsg3rdcmO7ghXoi2/img-SbaoWcsbx73U2pCMEsluHBvg.png?st=2024-11-11T13%3A55%3A30Z&se=2024-11-11T15%3A55%3A30Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-11-10T23%3A50%3A10Z&ske=2024-11-11T23%3A50%3A10Z&sks=b&skv=2024-08-04&sig=t6tDiEzY62BirxancxSNfhIWpH3NybsD0bikEskbHS0%3D)
+
 ## 🚀 Journey Through Deep Space: A Programming Adventure
 
 Welcome to the cosmic adventure, where you'll navigate the realms of object-oriented programming and creative coding. You are tasked to create a simulation of a deep space journey where spacecrafts traverse different sections of space, fueled by data from external files. This task strengthens your skills in handling data files, designing classes, and implementing creative solutions.
